@@ -33,14 +33,6 @@ public class Note {
 		this.nomNote = nomNote;
 	}
 
-	public int getNote() {
-		return note;
-	}
-
-	public void setNote(int note) {
-		this.note = note;
-	}
-
 	public int getNumeroOctave() {
 		return numeroOctave;
 	}
