@@ -28,26 +28,27 @@ public class fichierLilypond implements Serializable{
 			noteActuel = note.get(i);
 			
 			if(noteActuel.getNomNote().equals("silence")){
-				s += "r" + convertionDureeLilypond(noteActuel);
+				s += "r" + convertionDureeLilypond(noteActuel) + " ";
 			}
-			
-			if (noteActuel.getNumeroOctave() == 1){//1ere octave
-				s += noteActuel.getNomNote() + convertionDureeLilypond(noteActuel) + " ";
-			}
-			else if(noteActuel.getNumeroOctave() == 2){//2eme octave
-				s += noteActuel.getNomNote() + "'" + convertionDureeLilypond(noteActuel) + " ";
-			}
-			else if(noteActuel.getNumeroOctave() == 3){//3eme octave
-				s += noteActuel.getNomNote() + "''"  + convertionDureeLilypond(noteActuel) + " ";
-			}
-			else{//4eme octave
-				s += noteActuel.getNomNote() + "'''"  + convertionDureeLilypond(noteActuel) + " ";
+			else{
+				if (noteActuel.getNumeroOctave() == 1){//1ere octave
+					s += noteActuel.getNomNote() + convertionDureeLilypond(noteActuel) + " ";
+				}
+				else if(noteActuel.getNumeroOctave() == 2){//2eme octave
+					s += noteActuel.getNomNote() + "'" + convertionDureeLilypond(noteActuel) + " ";
+				}
+				else if(noteActuel.getNumeroOctave() == 3){//3eme octave
+					s += noteActuel.getNomNote() + "''"  + convertionDureeLilypond(noteActuel) + " ";
+				}
+				else{//4eme octave
+					s += noteActuel.getNomNote() + "'''"  + convertionDureeLilypond(noteActuel) + " ";
+				}
 			}
 		}
 		return s;
 	}
 	
-	public void sauvegarderEnLilypond(LinkedList<Note> soprano, LinkedList<Note> alto, LinkedList<Note> tenor, LinkedList<Note> basse){//Enregistrer au format lilypond
+	public void sauvegarderEnLilypond(LinkedList<Note> soprano, LinkedList<Note> alto, LinkedList<Note> tenor, LinkedList<Note> basse, String fichier){//Enregistrer au format lilypond
 		try{
 			String s = "\\include \"italiano.ly\" \n\\score{\n\\new ChoirStaff <<\n\t\\new Staff \\with { instrumentName = \"Soprano\" }{\\new voice{ ";
 			s += conversionNoteLilypond(soprano)+"}}\n";
@@ -59,7 +60,7 @@ public class fichierLilypond implements Serializable{
 			s += conversionNoteLilypond(basse)+"}}\n";
 			s += ">>\n} ";
 			
-			FileWriter sortie = new FileWriter("test.ly");
+			FileWriter sortie = new FileWriter(fichier);
 			sortie.write(s);
 			sortie.close();
 
