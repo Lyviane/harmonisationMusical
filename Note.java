@@ -16,7 +16,7 @@ public class Note {
 	
 	public Note(String nomNote, int num) throws NoteException, NumberException{
 		if((! nomNote.equals("do"))&&(! nomNote.equals("re"))&&(! nomNote.equals("mi"))&&(! nomNote.equals("fa"))&&(! nomNote.equals("sol"))&&(! nomNote.equals("la"))
-				&&(! nomNote.equals("si"))){
+				&&(! nomNote.equals("si"))&& (!nomNote.equals("-"))){
 			throw new NoteException();
 		}else {
 			this.nomNote = nomNote;
@@ -30,7 +30,7 @@ public class Note {
 	
 	public Note(String nomNote, int num, int temps) throws NoteException, NumberException{
 		if((! nomNote.equals("do"))&&(! nomNote.equals("re"))&&(! nomNote.equals("mi"))&&(! nomNote.equals("fa"))&&(! nomNote.equals("sol"))&&(! nomNote.equals("la"))
-				&&(! nomNote.equals("si") && (!nomNote.equals("silence")))){
+				&&(! nomNote.equals("si") && (!nomNote.equals("-")))){
 			throw new NoteException();
 		}else {
 			this.nomNote = nomNote;
