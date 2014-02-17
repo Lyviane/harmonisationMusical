@@ -4,7 +4,7 @@ public class Note {
 	private String nomNote;
 	private int numeroOctave;
 	public Note(String nomNote) throws NoteException{
-		if((! nomNote.equals("do"))&&(! nomNote.equals("re))&&(! nomNote.equals("mi"))&&(! nomNote.equals("fa"))&&(! nomNote.equals("sol"))&&(! nomNote.equals("la"))&&(! nomNote.equals("si"))){
+		if((! nomNote.equals("do"))&&(! nomNote.equals("r�"))&&(! nomNote.equals("mi"))&&(! nomNote.equals("fa"))&&(! nomNote.equals("sol"))&&(! nomNote.equals("la"))&&(! nomNote.equals("si"))){
 			throw new NoteException();
 		}
 		else{ 
@@ -12,7 +12,7 @@ public class Note {
 		}
 	}
 	public Note(String nomNote, int num) throws NoteException, NumberException{
-		if((! nomNote.equals("do"))&&(! nomNote.equals("re"))&&(! nomNote.equals("mi"))&&(! nomNote.equals("fa"))&&(! nomNote.equals("sol"))&&(! nomNote.equals("la"))
+		if((! nomNote.equals("do"))&&(! nomNote.equals("r�"))&&(! nomNote.equals("mi"))&&(! nomNote.equals("fa"))&&(! nomNote.equals("sol"))&&(! nomNote.equals("la"))
 				&&(! nomNote.equals("si"))){
 			throw new NoteException();
 		}else {
