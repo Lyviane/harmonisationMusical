@@ -1,5 +1,8 @@
 package projet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Accord {
 	private Note tonique, tierce, quinte;
 	private String nomA;
@@ -182,5 +185,87 @@ public class Accord {
 	}
 	public String toString(){
 		return nomA;
+	}
+	
+	//voir tous les accords possible
+	public List<Accord> accordsPossible(Soprano s) {
+		Note n = s.getN();
+		List<Accord> listeA = new ArrayList<Accord>();
+		switch (n.getNomNote()) {
+		case "do":
+			try {
+				listeA.add(new Accord("I"));
+				listeA.add(new Accord("IV"));
+				listeA.add(new Accord("VI"));
+			} catch (NomAccordException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "re":
+			try {
+				listeA.add(new Accord("II"));
+				listeA.add(new Accord("V"));
+				listeA.add(new Accord("VII"));
+			} catch (NomAccordException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "mi":
+			try {
+				listeA.add(new Accord("III"));
+				listeA.add(new Accord("VI"));
+				listeA.add(new Accord("I"));
+			} catch (NomAccordException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "fa":
+			try {
+				listeA.add(new Accord("IV"));
+				listeA.add(new Accord("II"));
+				listeA.add(new Accord("VII"));
+			} catch (NomAccordException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "sol":
+			try {
+				listeA.add(new Accord("III"));
+				listeA.add(new Accord("V"));
+				listeA.add(new Accord("I"));
+			} catch (NomAccordException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "la":
+			try {
+				listeA.add(new Accord("II"));
+				listeA.add(new Accord("IV"));
+				listeA.add(new Accord("VI"));
+			} catch (NomAccordException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "si":
+			try {
+				listeA.add(new Accord("III"));
+				listeA.add(new Accord("V"));
+				listeA.add(new Accord("VII"));
+			} catch (NomAccordException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		default:
+			System.err.println("Erreur de note");
+			break;
+		}
+		return listeA;
 	}
 }
