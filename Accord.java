@@ -268,4 +268,13 @@ public class Accord {
 		}
 		return listeA;
 	}
+	public void attributionDesNotesAuxAccords(Soprano s){
+		Alto a; Tenor t; Basse b;
+		Note n = s.getN();
+		//b.getN().getNomNote() = this.getTonique().getNomNote();
+		switch (n.getNomNote()){
+		case "this.getTonique().getNomNote()" :
+			
+		}
+	}
 }
