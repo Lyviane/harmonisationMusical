@@ -11,9 +11,6 @@ public class Soprano implements Voix {
 		} catch (NoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (NumberException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return note;
 	}
@@ -24,9 +21,6 @@ public class Soprano implements Voix {
 		try {
 			note = new Note("la", 4);
 		} catch (NoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NumberException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

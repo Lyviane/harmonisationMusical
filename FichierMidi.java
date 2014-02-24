@@ -9,83 +9,66 @@ public class FichierMidi {
 	private static final int VELOCITY = 64;
 
 	public int convertionNoteMidi(Note n) {
-		int note = 0, octave = n.getNumeroOctave();
-		String nom = n.getNomNote();
-
-		switch (nom) {
-		case "do":
-			if (octave == 1)
-				note = 36;
-			else if (octave == 2)
-				note = 48;
-			else if (octave == 3)
-				note = 60;
-			else
-				note = 72;
-			break;
-		case "re":
-			if (octave == 1)
-				note = 38;
-			else if (octave == 2)
-				note = 50;
-			else if (octave == 3)
-				note = 62;
-			else
-				note = 74;
-			break;
-		case "mi":
-			if (octave == 1)
-				note = 40;
-			else if (octave == 2)
-				note = 52;
-			else if (octave == 3)
-				note = 64;
-			else
-				note = 76;
-			break;
-		case "fa":
-			if (octave == 1)
-				note = 41;
-			else if (octave == 2)
-				note = 53;
-			else if (octave == 3)
-				note = 65;
-			else
-				note = 77;
-			break;
-		case "sol":
-			if (octave == 1)
-				note = 43;
-			else if (octave == 2)
-				note = 55;
-			else if (octave == 3)
-				note = 67;
-			else
-				note = 79;
-			break;
-		case "la":
-			if (octave == 1)
-				note = 45;
-			else if (octave == 2)
-				note = 57;
-			else if (octave == 3)
-				note = 69;
-			else
-				note = 81;
-			break;
-		case "si":
-			if (octave == 1)
-				note = 47;
-			else if (octave == 2)
-				note = 59;
-			else if (octave == 3)
-				note = 71;
-			else
-				note = 83;
-			break;
+		switch (n.getNote()){
+		case 0:
+			return 36;
+		case 1:
+			return 38;
+		case 2:
+			return 40;
+		case 3:
+			return 41;
+		case 4:
+			return 43;
+		case 5:
+			return 45;
+		case 6:
+			return 47;
+		case 7:
+			return 48;
+		case 8:
+			return 50;
+		case 9:
+			return 52;
+		case 10:
+			return 53;
+		case 11:
+			return 55;
+		case 12:
+			return 57;
+		case 13:
+			return 59;
+		case 14:
+			return 60;
+		case 15:
+			return 62;
+		case 16:
+			return 64;
+		case 17:
+			return 65;
+		case 18:
+			return 67;
+		case 19:
+			return 69;
+		case 20:
+			return 71;
+		case 21:
+			return 72;
+		case 22:
+			return 74;
+		case 23:
+			return 76;
+		case 24:
+			return 77;
+		case 25:
+			return 79;
+		case 26:
+			return 81;
+		case 27:
+			return 83;
+		default:
+			return -1;
 		}
-
-		return note;
 	}
 
 	public void sauvegarderEnMidi(LinkedList<Note> soprano, LinkedList<Note> alto, LinkedList<Note> tenor, LinkedList<Note> basse, String fichier) {
@@ -127,7 +110,7 @@ public class FichierMidi {
 			{
 				for (int i = 0; i < note.size(); i++) {
 					n = note.get(i);
-					if (n.getNomNote() != "-"){
+					if (n.getNote() != 28){
 						track.add(noteOn(convertionNoteMidi(n), temps, v));
 						temps = temps + n.getDuree();
 						track.add(noteOff(convertionNoteMidi(n), temps, v));

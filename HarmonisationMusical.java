@@ -38,28 +38,21 @@ public class HarmonisationMusical {
 							nomNote = s2.nextToken();
 							temps = Integer.parseInt(s2.nextToken());
 							
-							if (nomNote.length() == 4){
-								if (nomNote.substring(0, 3).equals("sol")){
-									n = new Note("sol", Integer.parseInt(nomNote.substring(3)), temps);	
-								}
-							}
-							else if (nomNote.equals("-")){
-								n = new Note("-", 1, temps);	
-							}
-							else if (nomNote.length() == 3)
-								n = new Note(nomNote.substring(0, 2), Integer.parseInt(nomNote.substring(2)),temps);
+							n = new Note(nomNote, temps);
+							
 						}
 						liste.add(n);
 					}
 				 }
 			 }		
-		} catch (IOException | NumberFormatException | NoteException | NumberException e) {
+		} catch (IOException | NumberFormatException | NoteException e) {
 			e.printStackTrace();
 		}
 		return liste;
 	}
 
 	public static void main(String[] args) {
+		
 	}
 
 }

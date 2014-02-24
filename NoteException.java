@@ -1,5 +1,6 @@
 package projet;
 
+@SuppressWarnings("serial")
 public class NoteException extends Exception {
 
 	public NoteException() {

@@ -26,22 +26,23 @@ public class FichierLylipond implements Serializable{
 		
 		for(int i = 0; i < note.size(); i++){
 			noteActuel = note.get(i);
+			int n = noteActuel.getNote();
 			
-			if(noteActuel.getNomNote().equals("-")){
+			if(n == 28){
 				s += "r" + convertionDureeLilypond(noteActuel) + " ";
 			}
 			else{
-				if (noteActuel.getNumeroOctave() == 1){//1ere octave
-					s += noteActuel.getNomNote() + "," + convertionDureeLilypond(noteActuel) + " ";
+				if(n == 0 || n == 1 || n == 2 || n == 3 || n == 4 || n == 5 || n == 6){//1ere octave
+					s += noteActuel.nomNote() + "," + convertionDureeLilypond(noteActuel) + " ";
 				}
-				else if(noteActuel.getNumeroOctave() == 2){//2eme octave
-					s += noteActuel.getNomNote() + convertionDureeLilypond(noteActuel) + " ";
+				else if(n == 7 || n == 8 || n == 9 || n == 10 || n == 11 || n == 12 || n == 13){//2eme octave
+					s += noteActuel.nomNote() + convertionDureeLilypond(noteActuel) + " ";
 				}
-				else if(noteActuel.getNumeroOctave() == 3){//3eme octave
-					s += noteActuel.getNomNote() + "'"  + convertionDureeLilypond(noteActuel) + " ";
+				else if(n == 14 || n == 15 || n == 16 || n == 17 || n == 18 || n == 19 || n == 20){//3eme octave
+					s += noteActuel.nomNote() + "'"  + convertionDureeLilypond(noteActuel) + " ";
 				}
 				else{//4eme octave
-					s += noteActuel.getNomNote() + "''"  + convertionDureeLilypond(noteActuel) + " ";
+					s += noteActuel.nomNote() + "''"  + convertionDureeLilypond(noteActuel) + " ";
 				}
 			}
 		}

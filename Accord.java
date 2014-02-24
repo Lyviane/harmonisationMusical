@@ -24,7 +24,7 @@ public class Accord {
 			if((accord.equals("II"))){
 				nomA = accord;
 				try {
-					tonique = new Note("ré");
+					tonique = new Note("rÃ©");
 				} catch (NoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -98,7 +98,7 @@ public class Accord {
 					e.printStackTrace();
 				}
 				try {
-					quinte = new Note("ré");
+					quinte = new Note("rÃ©");
 				} catch (NoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -113,7 +113,7 @@ public class Accord {
 					e.printStackTrace();
 				}
 				try {
-					tierce = new Note("ré");
+					tierce = new Note("rÃ©");
 				} catch (NoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -134,7 +134,7 @@ public class Accord {
 					e.printStackTrace();
 				}
 				try {
-					tierce = new Note("ré");
+					tierce = new Note("rÃ©");
 				} catch (NoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
