@@ -35,9 +35,12 @@ public abstract class Note {
 	}
 	
 	public boolean noteValide(int n, int min, int max){
-		if (n >= min && n <= max)
-			return true;
-		return false;
+		if (n != 28){//si note différente d'un silence
+			if (n >= min && n <= max)
+				return true;
+			return false;
+		}
+		return true;
 	}
 	
 	public int noteStringEnNoteInt(String nomNote) throws NoteException{
