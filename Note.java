@@ -1,205 +1,21 @@
 package projet;
 
-public class Note {
-	private int note;
-	private int duree = 1; //par défaut c'est la durée d'une noire
+public abstract class Note {
+	protected int note;
+	protected int duree = 1; //par défaut c'est la durée d'une noire
 
 	public Note(String nomNote) throws NoteException{
-		switch (nomNote){
-		case "do1":
-			note = 0;
-			break;
-		case "do2":
-			note = 7;
-			break;
-		case "do3":
-			note = 14;
-			break;
-		case "do4":
-			note = 21;
-			break;
-		case "re1":
-			note = 1;
-			break;
-		case "re2":
-			note = 8;
-			break;
-		case "re3":
-			note = 15;
-			break;
-		case "re4":
-			note = 22;
-			break;
-		case "mi1":
-			note = 2;
-			break;
-		case "mi2":
-			note = 9;
-			break;
-		case "mi3":
-			note = 16;
-			break;
-		case "mi4":
-			note = 23;
-			break;
-		case "fa1":
-			note = 3;
-			break;
-		case "fa2":
-			note = 10;
-			break;
-		case "fa3":
-			note = 17;
-			break;
-		case "fa4":
-			note = 24;
-			break;
-		case "sol1":
-			note = 4;
-			break;
-		case "sol2":
-			note = 11;
-			break;
-		case "sol3":
-			note = 18;
-			break;
-		case "sol4":
-			note = 25;
-			break;
-		case "la1":
-			note = 5;
-			break;
-		case "la2":
-			note = 12;
-			break;
-		case "la3":
-			note = 19;
-			break;
-		case "la4":
-			note = 26;
-			break;
-		case "si1":
-			note = 6;
-			break;
-		case "si2":
-			note = 13;
-			break;
-		case "si3":
-			note = 20;
-			break;
-		case "si4":
-			note = 27;
-			break;
-		case "-":
-			note = 28;//silence
-			break;
-		default:
-			throw new NoteException();
-		}
+		
 	}
 	
 	public Note(String nomNote, int temps) throws NoteException{
 		duree = temps;
-		
-		switch (nomNote){
-		case "do1":
-			note = 0;
-			break;
-		case "do2":
-			note = 7;
-			break;
-		case "do3":
-			note = 14;
-			break;
-		case "do4":
-			note = 21;
-			break;
-		case "re1":
-			note = 1;
-			break;
-		case "re2":
-			note = 8;
-			break;
-		case "re3":
-			note = 15;
-			break;
-		case "re4":
-			note = 22;
-			break;
-		case "mi1":
-			note = 2;
-			break;
-		case "mi2":
-			note = 9;
-			break;
-		case "mi3":
-			note = 16;
-			break;
-		case "mi4":
-			note = 23;
-			break;
-		case "fa1":
-			note = 3;
-			break;
-		case "fa2":
-			note = 10;
-			break;
-		case "fa3":
-			note = 17;
-			break;
-		case "fa4":
-			note = 24;
-			break;
-		case "sol1":
-			note = 4;
-			break;
-		case "sol2":
-			note = 11;
-			break;
-		case "sol3":
-			note = 18;
-			break;
-		case "sol4":
-			note = 25;
-			break;
-		case "la1":
-			note = 5;
-			break;
-		case "la2":
-			note = 12;
-			break;
-		case "la3":
-			note = 19;
-			break;
-		case "la4":
-			note = 26;
-			break;
-		case "si1":
-			note = 6;
-			break;
-		case "si2":
-			note = 13;
-			break;
-		case "si3":
-			note = 20;
-			break;
-		case "si4":
-			note = 27;
-			break;
-		case "-":
-			note = 28;//silence
-			break;
-		default:
-			throw new NoteException();
-		}
 	}
 	
-	public Note(int nom){
-		note = nom;
+	public Note(int nom) throws NoteException{
 	}
 	
-	public Note(int nom, int temps){
-		note = nom;
+	public Note(int nom, int temps) throws NoteException{
 		duree = temps;
 	}
 
@@ -216,6 +32,77 @@ public class Note {
 
 	public void setNote(int note) {
 		this.note = note;
+	}
+	
+	public boolean noteValide(int n, int min, int max){
+		if (n >= min && n <= max)
+			return true;
+		return false;
+	}
+	
+	public int noteStringEnNoteInt(String nomNote) throws NoteException{
+		switch (nomNote){
+		case "do1":
+			return 0;
+		case "do2":
+			return 7;
+		case "do3":
+			return 14;
+		case "do4":
+			return 21;
+		case "re1":
+			return 1;
+		case "re2":
+			return 8;
+		case "re3":
+			return 15;
+		case "re4":
+			return 22;
+		case "mi1":
+			return 2;
+		case "mi2":
+			return 9;
+		case "mi3":
+			return 16;
+		case "mi4":
+			return 23;
+		case "fa1":
+			return 3;
+		case "fa2":
+			return 10;
+		case "fa3":
+			return 17;
+		case "fa4":
+			return 24;
+		case "sol1":
+			return 4;
+		case "sol2":
+			return 11;
+		case "sol3":
+			return 18;
+		case "sol4":
+			return 25;
+		case "la1":
+			return 5;
+		case "la2":
+			return 12;
+		case "la3":
+			return 19;
+		case "la4":
+			return 26;
+		case "si1":
+			return 6;
+		case "si2":
+			return 13;
+		case "si3":
+			return 20;
+		case "si4":
+			return 27;
+		case "-":
+			return 28;//silence
+		default:
+			throw new NoteException();
+		}
 	}
 	
 	public String nomNote(){
@@ -334,6 +221,24 @@ public class Note {
 		}
 		
 		return nomNote;
+	}
+	
+	public boolean equals(Note n){
+		if (note == n.note)
+			return true;
+		return false;
+	}
+	
+	public boolean equals(int n){
+		if (note == n)
+			return true;
+		return false;
+	}
+	
+	public boolean superieur(Note n){
+		if (note > n.note)
+			return true;
+		return false;
 	}
 
 }
