@@ -239,7 +239,13 @@ public abstract class Note {
 	}
 	
 	public boolean superieur(Note n){
-		if (note > n.note)
+		if (note >= n.note)
+			return true;
+		return false;
+	}
+	
+	public boolean inferieur(Note n){
+		if (note <= n.note)
 			return true;
 		return false;
 	}
