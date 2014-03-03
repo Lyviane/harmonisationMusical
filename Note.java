@@ -43,57 +43,6 @@ public abstract class Note {
 		return true;
 	}
 	
-	public int[] noteStringToNoteInt(String nomNote) throws NoteException{
-		int[] t = new int[4];
-		switch (nomNote) {
-		case "do":
-			t[0] = 0;
-			t[1] = 7;
-			t[2] = 14;
-			t[3] = 21;
-			break;
-		case "re":
-			t[0] = 1;
-			t[1] = 8;
-			t[2] = 15;
-			t[3] = 22;
-			break;
-		case "mi":
-			t[0] = 2;
-			t[1] = 9;
-			t[2] = 16;
-			t[3] = 23;
-			break;
-		case "fa":
-			t[0] = 3;
-			t[1] = 10;
-			t[2] = 17;
-			t[3] = 24;
-			break;
-		case "sol":
-			t[0] = 4;
-			t[1] = 11;
-			t[2] = 18;
-			t[3] = 25;
-			break;
-		case "la":
-			t[0] = 5;
-			t[1] = 12;
-			t[2] = 19;
-			t[3] = 26;
-			break;
-		case "si":
-			t[0] = 6;
-			t[1] = 13;
-			t[2] = 20;
-			t[3] = 27;
-			break;
-		default:
-			break;
-		}
-		return t;	
-	}
-	
 	public int noteStringEnNoteInt(String nomNote) throws NoteException{
 		switch (nomNote){
 		case "do1":

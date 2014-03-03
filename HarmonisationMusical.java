@@ -38,7 +38,7 @@ public class HarmonisationMusical {
 							nomNote = s2.nextToken();
 							temps = Integer.parseInt(s2.nextToken());
 							
-							n = new Note(nomNote, temps);
+							n = new Soprano(nomNote, temps);
 							
 						}
 						liste.add(n);
@@ -52,7 +52,9 @@ public class HarmonisationMusical {
 	}
 
 	public static void main(String[] args) {
-		
+		LinkedList<Note> l = chargerFichierChant("fichier.chant");
+		FichierLylipond ly = new FichierLylipond();
+		ly.sauvegarderEnLilypond(l, l, l, l, titre, titre+".ly");
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Accord {
 	int[][] jeu;//accord possible pour une note
-	LinkedList<Integer>[][] suivant;
+	LinkedList<LinkedList<int[][]>>[][] suivant = null;
 	
 	public Accord(Soprano s){
 		remplirJeu(s.note);		
@@ -438,6 +438,52 @@ public class Accord {
 		return false;
 	}
 	
+	private boolean memeNature(int n1, int n2, int accordN1, int accordN2){
+		if (estTonique(n1, accordN1) && estTonique(n2, accordN2))
+			return true;
+		else if (estTierce(n1, accordN1) && estTierce(n2, accordN2))
+			return true;
+		else if (estQuinte(n1, accordN1) && estQuinte(n2, accordN2))
+			return true;
+		else
+			return false;
+	}
+	
+	@SuppressWarnings("null")
+	private void notesSuivantes(){
+		int[][] ancienJeu = jeu;
+		LinkedList<int[][]> liste = null;
+		LinkedList<Integer> listeAcc;
+		int noteAncien, accordAncien, note, accord;
+		
+		for(int a = 1; a < ancienJeu.length; a++){
+			for(int b = 0; b < ancienJeu[a].length; b++){
+				noteAncien = ancienJeu[a][b];
+				accordAncien = ancienJeu[0][b];
+				listeAcc = accordSuivant(accordAncien);
+				
+				for(int i = 1; i < jeu.length; i++){
+					for(int j = 0; j < jeu[i].length; j++){
+						note = jeu[i][j];
+						accord = jeu[0][j];
+						for(int g = 0; g < listeAcc.size(); g++){
+							if(listeAcc.get(g) == accord){
+								if(differenceEntreDeuxNotesValide(noteAncien, note)){
+									if((noteAppatientAccordSuivant(noteAncien, accord) && note == noteAncien) || !noteAppatientAccordSuivant(noteAncien, accord)){
+										if((!differenceSuperieurA2(note, noteAncien)) || (differenceSuperieurA2(note, noteAncien) && memeNature(noteAncien, note, accordAncien, accord))){
+											liste.add(jeu);//si le jeu respecte les règles d'enchaînement je l'ajoute à la liste
+										}
+									}
+								}
+							}
+						}
+						suivant[b][i].add(liste);
+					}
+				}
+			}
+		}
+	}
+	
 	private LinkedList<Integer> accordSuivant(int accord){
 		LinkedList<Integer> liste = new LinkedList<Integer>();
 		switch (accord) {
@@ -491,6 +537,19 @@ public class Accord {
 		if (soprano.superieur(alto) && alto.superieur(tenor) && tenor.superieur(basse))
 			return true;
 		return false;
+	}
+	
+	private boolean differenceSuperieurA2(int n1, int n2){
+		if (n1 >= n2){
+			if(n1-n2 > 2)
+				return false;
+			return true;
+		}
+		else{
+			if(n2-n1 > 2)
+				return false;
+			return true;
+		}
 	}
 	
 	private boolean differenceEntreDeuxNotesValide(int n1, int n2){
