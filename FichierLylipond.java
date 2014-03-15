@@ -33,16 +33,16 @@ public class FichierLylipond implements Serializable{
 			}
 			else{
 				if(n == 0 || n == 1 || n == 2 || n == 3 || n == 4 || n == 5 || n == 6){//1ere octave
-					s += noteActuel.nomNote() + "," + convertionDureeLilypond(noteActuel) + " ";
+					s += Note.noteIntEnNoteString(noteActuel.getNote()) + "," + convertionDureeLilypond(noteActuel) + " ";
 				}
 				else if(n == 7 || n == 8 || n == 9 || n == 10 || n == 11 || n == 12 || n == 13){//2eme octave
-					s += noteActuel.nomNote() + convertionDureeLilypond(noteActuel) + " ";
+					s += Note.noteIntEnNoteString(noteActuel.getNote()) + convertionDureeLilypond(noteActuel) + " ";
 				}
 				else if(n == 14 || n == 15 || n == 16 || n == 17 || n == 18 || n == 19 || n == 20){//3eme octave
-					s += noteActuel.nomNote() + "'"  + convertionDureeLilypond(noteActuel) + " ";
+					s += Note.noteIntEnNoteString(noteActuel.getNote()) + "'"  + convertionDureeLilypond(noteActuel) + " ";
 				}
 				else{//4eme octave
-					s += noteActuel.nomNote() + "''"  + convertionDureeLilypond(noteActuel) + " ";
+					s += Note.noteIntEnNoteString(noteActuel.getNote()) + "''"  + convertionDureeLilypond(noteActuel) + " ";
 				}
 			}
 		}
