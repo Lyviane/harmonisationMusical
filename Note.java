@@ -107,29 +107,6 @@ public abstract class Note {
 			throw new NoteException();
 		}
 	}
-	
-	public String nomNote(){
-		switch (note){
-		case 0: case 7: case 14: case 21:
-			return "do";
-		case 1: case 8: case 15: case 22:
-			return "re";
-		case 2: case 9: case 16: case 23: 
-			return "mi";
-		case 3: case 10: case 17: case 24:
-			return "fa";
-		case 4: case 11: case 18: case 25:
-			return "sol";
-		case 5: case 12: case 19: case 26:
-			return "la";
-		case 6: case 13: case 20: case 27:
-			return "si";
-		case 28:
-			return "-";
-		default:
-			return "";
-		}
-	}
 
 	public String toString(){
 		String nomNote = "";
@@ -224,6 +201,79 @@ public abstract class Note {
 		}
 		
 		return nomNote;
+	}
+	
+	public static String noteIntEnNoteString(int nomNote){
+		switch (nomNote) {
+		case 0: case 7: case 14: case 21:
+			return "do";
+		case 1: case 8: case 15: case 22:
+			return "re";
+		case 2: case 9: case 16: case 23:
+			return "mi";
+		case 3: case 10: case 17: case 24:
+			return "fa";
+		case 4: case 11: case 18: case 25:
+			return "sol";
+		case 5: case 12: case 19: case 26:
+			return "la";
+		case 6: case 13: case 20: case 27:
+			return "si";
+		case 28:
+			return "-";
+		default:
+			System.err.println("Erreur de note");
+			return "";
+		}
+	}
+	
+	public static int[] noteStringSimpleEnNoteInt(String nom){
+		int[] tab = new int[4];
+		switch(nom){
+		case "do":
+			tab[0] = 0;
+			tab[1] = 7;
+			tab[2] = 14;
+			tab[3] = 21;
+			break;
+		case "re":
+			tab[0] = 1;
+			tab[1] = 8;
+			tab[2] = 15;
+			tab[3] = 22;
+			break;
+		case "mi":
+			tab[0] = 2;
+			tab[1] = 9;
+			tab[2] = 16;
+			tab[3] = 23;
+			break;
+		case "fa":
+			tab[0] = 3;
+			tab[1] = 10;
+			tab[2] = 17;
+			tab[3] = 24;
+			break;
+		case "sol":
+			tab[0] = 4;
+			tab[1] = 11;
+			tab[2] = 18;
+			tab[3] = 25;
+			break;
+		case "la":
+			tab[0] = 5;
+			tab[1] = 12;
+			tab[2] = 19;
+			tab[3] = 26;
+			break;
+		case "si":
+			tab[0] = 6;
+			tab[1] = 13;
+			tab[2] = 20;
+			tab[3] = 27;
+			break;
+		}
+		return tab;
 	}
 	
 	public boolean equals(Note n){
