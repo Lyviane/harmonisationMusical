@@ -1,5 +1,7 @@
 package projet;
 
+import java.util.LinkedList;
+
 public class Regle {
 
 	private String typeNote(int note, int numAccord){
@@ -155,4 +157,25 @@ public class Regle {
 	public boolean estBasse(int note){
 		return (note >= 3 && note <= 15);
 	}
+	
+	public boolean noteAppatientAccordSuivant(int note, int AccordSuivant){
+		int[] noteAccordSuivant = Accord.noteDeLAccord(AccordSuivant);
+		for(int i = 0; i < noteAccordSuivant.length; i++){
+			if(noteAccordSuivant[i] == note)
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean estAccordSuivantValide(int acc, int accSuiv){
+		Accord a = new Accord(0);
+		LinkedList<Integer> listeAcc = a.accordSuivant(acc);
+		for(int i = 0; i < listeAcc.size(); i++){
+			if(accSuiv == listeAcc.get(i)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }
