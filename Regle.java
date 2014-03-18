@@ -39,7 +39,7 @@ public class Regle {
 				return "quinte";
 			}
 			break;
-		case 4: case 5:
+		case 4:
 			if(Note.noteIntEnNoteString(note).equals("fa")){
 				return "tonique";
 			}
@@ -50,7 +50,7 @@ public class Regle {
 				return "quinte";
 			}
 			break;
-		case 6:
+		case 5:
 			if(Note.noteIntEnNoteString(note).equals("sol")){
 				return "tonique";
 			}
@@ -61,7 +61,7 @@ public class Regle {
 				return "quinte";
 			}
 			break;
-		case 7:
+		case 6:
 			if(Note.noteIntEnNoteString(note).equals("la")){
 				return "tonique";
 			}
@@ -72,7 +72,7 @@ public class Regle {
 				return "quinte";
 			}
 			break;
-		case 8:
+		case 7:
 			if(Note.noteIntEnNoteString(note).equals("si")){
 				return "tonique";
 			}

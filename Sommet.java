@@ -2,10 +2,12 @@ package projet;
 
 public class Sommet {
 	private int positionNoteSoprano, accord;
+	private int[] jeu;
 	
-	public Sommet(int pNS, int a){
+	public Sommet(int pNS, int a, int[] j){
 		positionNoteSoprano = pNS;
 		accord = a;
+		jeu  = j;
 	}
 
 	public int getPositionNoteSoprano() {
@@ -24,7 +26,39 @@ public class Sommet {
 		this.accord = accord;
 	}
 	
+	public int[] getJeu() {
+		return jeu;
+	}
+
+	public void setJeu(int[] jeu) {
+		this.jeu = jeu;
+	}
+
 	public String toString(){
-		return "pos : "+positionNoteSoprano + " - acc : "+accord;
+		String s = ""+positionNoteSoprano;
+		if (accord == 1)
+			s += " - I - [";
+		else if (accord == 2)
+			s += " - II - [";
+		else if (accord == 3)
+			s += " - III - [";
+		else if (accord == 4)
+			s += " - IV - [";
+		else if (accord == 5)
+			s += " - V - [";
+		else if (accord == 6)
+			s += " - VI - [";
+		else if (accord == 7)
+			s += " - VII - [";
+		else
+			s += " - acc : " + accord +  " - [";
+		for(int i : jeu){
+			if(jeu[2] == i)
+				s += i;
+			else
+				s += i+",";
+		}
+		s += "]";
+		return s;
 	}
 }

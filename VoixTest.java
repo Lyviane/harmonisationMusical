@@ -9,9 +9,9 @@ public class VoixTest {
 	@Test
 	public void test() {
 		LinkedList<Integer> liste = new LinkedList<Integer>();
-		liste.add(21);
-		liste.add(22);
-		liste.add(23);
+		liste.add(14);
+		liste.add(15);
+		liste.add(16);
 		Voix v = new Voix(liste);
 		System.out.println(v.toString());
 	}

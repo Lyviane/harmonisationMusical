@@ -20,14 +20,18 @@ public class Voix {
 			pos++;
 			posSuiv = pos + 1;
 			for(int numAcc : acc.getAccord()){
-				l = new LinkedList<Sommet>();
-				l.add(new Sommet(pos, numAcc));
-				if (i != noteSoprano.size()-1){
-					for(Sommet som : listeAccordSuivantAAjouter(note, numAcc, noteSoprano.get(i+1), posSuiv)){
-						l.add(som);
+				Harmonie h = new Harmonie(note, numAcc);
+				for(int[] jeu : h.getJeu()){
+					l = new LinkedList<Sommet>();
+					l.add(new Sommet(pos, numAcc, jeu));
+					if (i != noteSoprano.size()-1){
+						for(Sommet som : listeAccordSuivantAAjouter(note, numAcc, noteSoprano.get(i+1), posSuiv)){
+							l.add(som);
+						}
 					}
+					liste.add(l);
 				}
-				liste.add(l);
+				
 			}
 		}
 		return liste;
@@ -40,7 +44,9 @@ public class Voix {
 		
 		for(int numAcc2 : acc2.getAccord()){
 			if(r.estAccordSuivantValide(numAcc1, numAcc2)){
-				s.add(new Sommet(pos2, numAcc2));
+				Harmonie h = new Harmonie(n2, numAcc2);
+				for(int[] jeu : h.getJeu())
+				s.add(new Sommet(pos2, numAcc2, jeu));
 			}
 		}
 		

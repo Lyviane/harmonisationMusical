@@ -65,6 +65,10 @@ public class Harmonie {
 		this.accord = accord;
 	}
 	
+	public LinkedList<int[]> getJeu() {
+		return jeu;
+	}
+
 	public int[] noteAltoPossible(){
 		int[] tab = new int[jeu.size()];
 		for(int i = 0; i < tab.length; i++){
