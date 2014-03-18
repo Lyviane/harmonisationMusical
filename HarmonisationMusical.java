@@ -45,7 +45,7 @@ public class HarmonisationMusical {
 					}
 				 }
 			 }		
-		} catch (IOException | NumberFormatException | NoteException e) {
+		} catch (IOException | NumberFormatException e) {
 			e.printStackTrace();
 		}
 		return liste;

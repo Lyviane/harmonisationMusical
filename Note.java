@@ -4,20 +4,20 @@ public class Note {
 	protected int note;
 	protected int duree = 1; //par défaut c'est la durée d'une noire
 
-	public Note(String nomNote) throws NoteException{
+	public Note(String nomNote){
 		note = noteStringEnNoteInt(nomNote);
 	}
 	
-	public Note(String nomNote, int temps) throws NoteException{
+	public Note(String nomNote, int temps){
 		duree = temps;
 		note = noteStringEnNoteInt(nomNote);
 	}
 	
-	public Note(int nom) throws NoteException{
+	public Note(int nom){
 		note = nom;
 	}
 	
-	public Note(int nom, int temps) throws NoteException{
+	public Note(int nom, int temps){
 		duree = temps;
 		note = nom;
 	}
@@ -46,7 +46,7 @@ public class Note {
 		return true;
 	}
 	
-	public int noteStringEnNoteInt(String nomNote) throws NoteException{
+	public int noteStringEnNoteInt(String nomNote){
 		switch (nomNote){
 		case "do1":
 			return 0;
@@ -107,7 +107,7 @@ public class Note {
 		case "-":
 			return 28;//silence
 		default:
-			throw new NoteException();
+			return -1;
 		}
 	}
 
