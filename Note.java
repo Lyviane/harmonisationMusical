@@ -1,22 +1,25 @@
 package projet;
 
-public abstract class Note {
+public class Note {
 	protected int note;
 	protected int duree = 1; //par défaut c'est la durée d'une noire
 
 	public Note(String nomNote) throws NoteException{
-		
+		note = noteStringEnNoteInt(nomNote);
 	}
 	
 	public Note(String nomNote, int temps) throws NoteException{
 		duree = temps;
+		note = noteStringEnNoteInt(nomNote);
 	}
 	
 	public Note(int nom) throws NoteException{
+		note = nom;
 	}
 	
 	public Note(int nom, int temps) throws NoteException{
 		duree = temps;
+		note = nom;
 	}
 
 	public int getDuree() {

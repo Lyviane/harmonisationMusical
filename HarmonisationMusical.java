@@ -38,7 +38,7 @@ public class HarmonisationMusical {
 							nomNote = s2.nextToken();
 							temps = Integer.parseInt(s2.nextToken());
 							
-							n = new Soprano(nomNote, temps);
+							n = new Note(nomNote, temps);
 							
 						}
 						liste.add(n);

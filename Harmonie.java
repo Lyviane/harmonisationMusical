@@ -22,11 +22,13 @@ public class Harmonie {
 						if(r.differenceDeHauteurValide(note, tab[i], tab[j], tab[k])){//règle 2
 							if(r.estAlto(tab[i]) && r.estTenor(tab[j]) && r.estBasse(tab[k])){//règle 1
 								if(r.estTonique(tab[k], accord)){//regle 3
-									int[] jeu = new int[3];
-									jeu[0] = tab[i];//alto
-									jeu[1] = tab[j];//tenor
-									jeu[2] = tab[k]; //basse
-									ret.add(jeu);
+									if(r.reformeAccord(note, tab[i], tab[j], tab[k])){
+										int[] jeu = new int[3];
+										jeu[0] = tab[i];//alto
+										jeu[1] = tab[j];//tenor
+										jeu[2] = tab[k]; //basse
+										ret.add(jeu);
+									}
 								}
 							}
 						}
@@ -39,7 +41,7 @@ public class Harmonie {
 
 	public String toString(){
 		int[] tab;
-		String s = "[";
+		String s = "";
 		Iterator<int[]> it = jeu.listIterator();
 		while(it.hasNext()){
 			tab = it.next();
@@ -50,9 +52,8 @@ public class Harmonie {
 				else
 					s += tab[i];
 			}
-			s += "]";
+			s += "]\n";
 		}
-		s += "]";
 		return s;
 	}
 	

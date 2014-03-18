@@ -117,7 +117,7 @@ public class Regle {
 	}
 	
 	public boolean differenceDeHauteurValide(int soprano, int alto, int tenor, int basse){
-		return (soprano >= alto && alto >= tenor && tenor >= basse);
+		return (soprano > alto && alto > tenor && tenor > basse);
 	}
 	
 	public boolean differenceSuperieurA2(int n1, int n2){
@@ -176,6 +176,19 @@ public class Regle {
 			}
 		}
 		return false;
+	}
+
+	public boolean reformeAccord(int note1, int note2, int note3, int note4) {
+		String n1 = Note.noteIntEnNoteString(note1), n2 = Note.noteIntEnNoteString(note2), n3 = Note.noteIntEnNoteString(note3), n4 = Note.noteIntEnNoteString(note4);
+		if(n1.equals(n2) && n1.equals(n3) || n1.equals(n2) && n1.equals(n4) || n1.equals(n3) && n1.equals(n4))
+			return false;
+		else if(n1.equals(n2) || n1.equals(n3) || n1.equals(n4)){
+			if(n2.equals(n3) || n2.equals(n4) || n3.equals(n2) || n3.equals(n4) || n4.equals(n2) || n4.endsWith(n3))
+				return false;
+		}
+		else if(n2.equals(n3) && n2.equals(n4))
+			return false;
+		return true;
 	}
 	
 }
