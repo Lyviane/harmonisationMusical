@@ -50,11 +50,40 @@ public class HarmonisationMusical {
 		}
 		return liste;
 	}
+	
+	public static LinkedList<Integer> voixSoprano(LinkedList<Note> soprano){
+		LinkedList<Integer> sop = new LinkedList<Integer>();
+		int ancienneNote = 0;
+		for(Note n : soprano){
+			if(n.getNote() != 28){
+				for(int i = 0; i < n.getDuree(); i++){
+					sop.add(n.getNote());
+				}
+				ancienneNote = n.getNote();
+			}
+			else{
+				sop.add(ancienneNote);
+			}
+		}
+		return sop;
+	}
+	
+	public static LinkedList<Note> creerVoix(LinkedList<Integer> soprano, int numVoix){//numVoix = 0: alto, = 1: tenor, = 2: basse
+		Voix v = new Voix(soprano);
+		LinkedList<Integer> listeInt = v.unChemin(numVoix);
+		LinkedList<Note> ret = new LinkedList<Note>();
+		
+		for(Integer i : listeInt){
+			ret.add(new Note(i));
+		}
+		return ret;
+	}
 
 	public static void main(String[] args) {
 		LinkedList<Note> l = chargerFichierChant("fichier.chant");
+		LinkedList<Integer> lInt = voixSoprano(l);
 		FichierLylipond ly = new FichierLylipond();
-		ly.sauvegarderEnLilypond(l, l, l, l, titre, titre+".ly");
+		ly.sauvegarderEnLilypond(l, creerVoix(lInt, 0), creerVoix(lInt, 1), creerVoix(lInt, 2), titre, titre+".ly");
 	}
 
 }

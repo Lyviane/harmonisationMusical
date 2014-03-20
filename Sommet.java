@@ -17,6 +17,18 @@ public class Sommet {
 	public void setPositionNoteSoprano(int positionNoteSoprano) {
 		this.positionNoteSoprano = positionNoteSoprano;
 	}
+	
+	public int alto(){
+		return jeu[0];
+	}
+	
+	public int tenor(){
+		return jeu[1];
+	}
+	
+	public int basse(){
+		return jeu[2];
+	}
 
 	public int getAccord() {
 		return accord;
@@ -32,6 +44,10 @@ public class Sommet {
 
 	public void setJeu(int[] jeu) {
 		this.jeu = jeu;
+	}
+	
+	public boolean equals(Sommet s1){
+		return s1.getAccord() == accord && java.util.Arrays.equals(s1.getJeu(),jeu);
 	}
 
 	public String toString(){

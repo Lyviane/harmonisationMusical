@@ -191,4 +191,37 @@ public class Regle {
 		return true;
 	}
 	
+	public boolean regle6(Sommet s1, Sommet s2){
+		if(differenceEntreDeuxNotesValide(s1.getJeu()[0], s2.getJeu()[0]) 
+				&& differenceEntreDeuxNotesValide(s1.getJeu()[1], s2.getJeu()[1]) 
+				&& differenceEntreDeuxNotesValide(s1.getJeu()[2], s2.getJeu()[2])){
+			if((noteAppatientAccordSuivant(s1.getJeu()[0], s2.getAccord()) && (s1.getJeu()[0] == s2.getJeu()[0])) 
+					|| (!noteAppatientAccordSuivant(s1.getJeu()[0], s2.getAccord()))){
+				//si alto appartient a l'accord suivant elle ne change pas
+				if((noteAppatientAccordSuivant(s1.getJeu()[1], s2.getAccord()) && (s1.getJeu()[1] == s2.getJeu()[1])) 
+						|| (!noteAppatientAccordSuivant(s1.getJeu()[1], s2.getAccord()))){
+					//si tenor appartient a l'accord suivant elle ne change pas
+					if((noteAppatientAccordSuivant(s1.getJeu()[2], s2.getAccord()) && (s1.getJeu()[2] == s2.getJeu()[2])) 
+							|| (!noteAppatientAccordSuivant(s1.getJeu()[2], s2.getAccord()))){
+						//si basse appartient a l'accord suivant elle ne change pas
+						if((!differenceSuperieurA2(s1.getJeu()[0], s2.getJeu()[0]))
+								|| (differenceSuperieurA2(s1.getJeu()[0], s2.getJeu()[0]) && memeNature(s1.getJeu()[0], s2.getJeu()[0], s1.getAccord(), s2.getAccord()))){
+							//si la difference entre alto1 et alto2 est > 2 et qu'elles sont de même nature
+							if((!differenceSuperieurA2(s1.getJeu()[1], s2.getJeu()[1])) 
+									|| (differenceSuperieurA2(s1.getJeu()[1], s2.getJeu()[1]) && memeNature(s1.getJeu()[1], s2.getJeu()[1], s1.getAccord(), s2.getAccord()))){
+								//si la difference entre tenor1 et tenor2 est > 2 et qu'elles sont de même nature
+								if((!differenceSuperieurA2(s1.getJeu()[2], s2.getJeu()[2]))
+										|| (differenceSuperieurA2(s1.getJeu()[2], s2.getJeu()[2]) && memeNature(s1.getJeu()[2], s2.getJeu()[2], s1.getAccord(), s2.getAccord()))){
+									//si la difference entre basse1 et basse2 est > 2 et qu'elles sont de même nature
+									return true;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
 }
