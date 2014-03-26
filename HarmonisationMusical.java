@@ -68,9 +68,9 @@ public class HarmonisationMusical {
 		return sop;
 	}
 	
-	public static LinkedList<Note> creerVoix(LinkedList<Integer> soprano, int numVoix){//numVoix = 0: alto, = 1: tenor, = 2: basse
+	public static LinkedList<Note> creerVoix(LinkedList<Integer> soprano, int numVoix) throws HarmonisationException{//numVoix = 0: alto, = 1: tenor, = 2: basse
 		Voix v = new Voix(soprano);
-		LinkedList<Integer> listeInt = v.unChemin(numVoix);
+		LinkedList<Integer> listeInt = v.unChemin(0, numVoix, soprano.size());
 		LinkedList<Note> ret = new LinkedList<Note>();
 		
 		for(Integer i : listeInt){
@@ -83,7 +83,11 @@ public class HarmonisationMusical {
 		LinkedList<Note> l = chargerFichierChant("fichier.chant");
 		LinkedList<Integer> lInt = voixSoprano(l);
 		FichierLylipond ly = new FichierLylipond();
-		ly.sauvegarderEnLilypond(l, creerVoix(lInt, 0), creerVoix(lInt, 1), creerVoix(lInt, 2), titre, titre+".ly");
+		try{
+			ly.sauvegarderEnLilypond(l, creerVoix(lInt, 0), creerVoix(lInt, 1), creerVoix(lInt, 2), titre, titre+".ly");
+		}catch(HarmonisationException e){
+			System.err.println(e);
+		}
 	}
 
 }

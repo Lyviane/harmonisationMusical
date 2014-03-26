@@ -1,8 +1,9 @@
 package projet;
 
-public class Sommet {
+public class Sommet implements java.lang.Comparable{
 	private int positionNoteSoprano, accord;
 	private int[] jeu;
+	private boolean visite = false;
 	
 	public Sommet(int pNS, int a, int[] j){
 		positionNoteSoprano = pNS;
@@ -45,13 +46,29 @@ public class Sommet {
 	public void setJeu(int[] jeu) {
 		this.jeu = jeu;
 	}
-	
+
+	public boolean isVisite() {
+		return visite;
+	}
+
+	public void setVisite(boolean visite) {
+		this.visite = visite;
+	}
+
 	public boolean equals(Sommet s1){
 		return s1.getAccord() == accord && java.util.Arrays.equals(s1.getJeu(),jeu);
 	}
+	
+	public int compareTo(Object other) { 
+	      int nombre1 = ((Sommet) other).getPositionNoteSoprano(); 
+	      int nombre2 = this.getPositionNoteSoprano(); 
+	      if (nombre1 > nombre2)  return -1; 
+	      else if(nombre1 == nombre2) return 0; 
+	      else return 1; 
+	   } 
 
 	public String toString(){
-		String s = ""+positionNoteSoprano;
+		String s = "("+positionNoteSoprano;
 		if (accord == 1)
 			s += " - I - [";
 		else if (accord == 2)
@@ -74,7 +91,7 @@ public class Sommet {
 			else
 				s += i+",";
 		}
-		s += "]";
+		s += "])";
 		return s;
 	}
 }

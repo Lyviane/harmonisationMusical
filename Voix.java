@@ -22,7 +22,7 @@ public class Voix {
 			posSuiv = pos + 1;
 			for(int numAcc : acc.getAccord()){//pour chaque note de l'accord
 				Harmonie h = new Harmonie(note, numAcc);
-				for(int[] jeu : h.getJeu()){//pour chaque jeu de l'harmonie formée
+				for(int[] jeu : h.getJeu()){//pour chaque jeu de l'harmonie formï¿½e
 					l = new LinkedList<Sommet>();
 					Sommet sActuel = new Sommet(pos, numAcc, jeu);
 					l.add(sActuel);
@@ -42,16 +42,16 @@ public class Voix {
 		return liste;
 	}
 	
-	public LinkedList<Integer> unChemin(int numVoix){
+	public LinkedList<Integer> unChemin(int i, int numVoix, int tailleMelodie) throws HarmonisationException{
 		LinkedList<Integer> ret = new LinkedList<Integer>();
 		LinkedList<LinkedList<Sommet>> v = voix;
 		Sommet suiv;
-		LinkedList<Sommet> liste = v.get(0);
+		LinkedList<Sommet> liste = v.get(1);
 		
-		ret.add(liste.get(0).getJeu()[numVoix]);//je récupère le premier sommet de la liste et j'ajoute la note qui m'intéresse de son jeu
+		ret.add(liste.get(0).getJeu()[numVoix]);//je rï¿½cupï¿½re le premier sommet de la liste et j'ajoute la note qui m'intï¿½resse de son jeu
 		suiv = liste.get(1);
 		for(LinkedList<Sommet> listeS : v){
-			if(listeS.get(0).equals(suiv)){//si le premier membre de la liste est égal a suiv alors la nouvelle liste est listeS
+			if(listeS.get(0).equals(suiv)){//si le premier membre de la liste est ï¿½gal a suiv alors la nouvelle liste est listeS
 				ret.add(listeS.get(0).getJeu()[numVoix]);
 				if(listeS.size() > 1)
 					suiv = listeS.get(1);
@@ -60,6 +60,12 @@ public class Voix {
 			}
 		}
 		
+		if(ret.size() != tailleMelodie && i+1 < tailleMelodie){
+			return unChemin(i+1, numVoix, tailleMelodie);
+		}
+		else if(ret.size() != tailleMelodie && i+1 >= tailleMelodie){
+			throw new HarmonisationException("Aucune harmonisation n'est possible.");
+		}
 		return ret;
 	}
 	
