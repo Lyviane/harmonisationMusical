@@ -97,6 +97,10 @@ public class Voix {
 		}
 		return s;
 	}
+	
+	public int nombreHarmonisationPossible(){
+		return chemins.size();
+	}
 
 	public LinkedList<LinkedList<Sommet>> getChemins() {
 		return chemins;

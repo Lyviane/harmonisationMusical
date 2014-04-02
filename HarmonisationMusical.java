@@ -83,7 +83,10 @@ public class HarmonisationMusical {
 		LinkedList<Note> l = chargerFichierChant("fichier.chant");
 		LinkedList<Integer> lInt = voixSoprano(l);
 		FichierLylipond ly = new FichierLylipond();
+		FichierMidi mi = new FichierMidi();
 		ly.sauvegarderEnLilypond(l, creerVoix(lInt, 0), creerVoix(lInt, 1), creerVoix(lInt, 2), titre, titre+".ly");
+		mi.sauvegarderEnMidi(l, creerVoix(lInt, 0), creerVoix(lInt, 1), creerVoix(lInt, 2), titre+".mid");
+		System.out.println("Il y a " + new Voix(lInt).nombreHarmonisationPossible() + " harmonisations possibles.");
 	}
 
 }

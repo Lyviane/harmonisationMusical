@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class HarmonisationMusicalTest {
 
-	@Test
+	//@Test
 	public void testVoixSoprano() {
 		LinkedList<Note> l = HarmonisationMusical.chargerFichierChant("fichier.chant");
 		LinkedList<Integer> liste = HarmonisationMusical.voixSoprano(l);
@@ -15,4 +15,11 @@ public class HarmonisationMusicalTest {
 		}
 	}
 
+	@Test
+	public void test(){
+		LinkedList<Note> l = HarmonisationMusical.chargerFichierChant("fichier.chant");
+		LinkedList<Integer> liste = HarmonisationMusical.voixSoprano(l);
+		Voix v = new Voix(liste);
+		System.out.println(v);
+	}
 }

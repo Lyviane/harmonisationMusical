@@ -1,12 +1,8 @@
 package projet;
 
-import java.util.LinkedList;
-
 public class Sommet{
 	private int positionNoteSoprano, accord;
 	private int[] jeu;
-	private LinkedList<Sommet> suivants = null;
-	private boolean visite = false;
 	
 	public Sommet(int pNS, int a, int[] j){
 		positionNoteSoprano = pNS;
@@ -48,22 +44,6 @@ public class Sommet{
 
 	public void setJeu(int[] jeu) {
 		this.jeu = jeu;
-	}
-	
-	public LinkedList<Sommet> getSuivants() {
-		return suivants;
-	}
-
-	public void setSuivants(LinkedList<Sommet> suivants) {
-		this.suivants = suivants;
-	}
-
-	public boolean isVisite() {
-		return visite;
-	}
-
-	public void setVisite(boolean visite) {
-		this.visite = visite;
 	}
 
 	public boolean equals(Sommet s1){
