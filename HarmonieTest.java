@@ -6,7 +6,10 @@ public class HarmonieTest {
 
 	@Test
 	public void test() {
-		Harmonie h = new Harmonie(23, 1);
+		Harmonie h = new Harmonie(22, 2);
+		System.out.println(h.toString());
+		System.out.println("");
+		h = new Harmonie(22, 5);
 		System.out.println(h.toString());
 	}
 

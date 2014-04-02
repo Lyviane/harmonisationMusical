@@ -63,6 +63,7 @@ public class Voix {
 	public LinkedList<Integer> unChemin(int numVoix) {
 		LinkedList<Integer> ret = new LinkedList<Integer>();
 		if(chemins.size() == 0){
+			System.err.println("Il n'y a pas d'harmonisation possible.");
 			return ret;
 		}
 		LinkedList<Sommet> premierChemin = chemins.getFirst();

@@ -2,7 +2,7 @@ package projet;
 
 import java.util.LinkedList;
 
-public class Sommet implements java.lang.Comparable{
+public class Sommet{
 	private int positionNoteSoprano, accord;
 	private int[] jeu;
 	private LinkedList<Sommet> suivants = null;
@@ -69,14 +69,6 @@ public class Sommet implements java.lang.Comparable{
 	public boolean equals(Sommet s1){
 		return s1.getAccord() == accord && java.util.Arrays.equals(s1.getJeu(),jeu) && s1.getPositionNoteSoprano() == positionNoteSoprano;
 	}
-	
-	public int compareTo(Object other) { 
-	      int nombre1 = ((Sommet) other).getPositionNoteSoprano(); 
-	      int nombre2 = this.getPositionNoteSoprano(); 
-	      if (nombre1 > nombre2)  return -1; 
-	      else if(nombre1 == nombre2) return 0; 
-	      else return 1; 
-	   } 
 
 	public String toString(){
 		String s = "("+positionNoteSoprano;

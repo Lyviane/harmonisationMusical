@@ -105,7 +105,7 @@ public class Regle {
 		return false;
 	}
 	
-	public boolean memeNature(int n1, int n2, int accordN1, int accordN2){
+	private boolean memeNature(int n1, int n2, int accordN1, int accordN2){
 		if (estTonique(n1, accordN1) && estTonique(n2, accordN2))
 			return true;
 		else if (estTierce(n1, accordN1) && estTierce(n2, accordN2))
@@ -123,17 +123,21 @@ public class Regle {
 	public boolean differenceSuperieurA2(int n1, int n2){
 		if (n1 >= n2){
 			if(n1-n2 > 2)
-				return false;
-			return true;
+				return true;
+			return false;
 		}
 		else{
 			if(n2-n1 > 2)
-				return false;
-			return true;
+				return true;
+			return false;
 		}
 	}
 	
-	public boolean differenceEntreDeuxNotesValide(int n1, int n2){
+	private boolean DiffSup2EtMemeNature(int n1, int n2, int accordN1, int accordN2){
+		return differenceSuperieurA2(n1, n2) && memeNature(n1, n2, accordN1, accordN2);
+	}
+	
+	private boolean differenceEntreDeuxNotesValide(int n1, int n2){
 		if (n1 >= n2){
 			if(n1-n2 > 6)
 				return false;
@@ -144,6 +148,10 @@ public class Regle {
 				return false;
 			return true;
 		}
+	}
+	
+	private boolean differenceEntreNotesJeuValide (int[] jeu1, int[] jeu2){
+		return differenceEntreDeuxNotesValide(jeu1[0], jeu2[0]) && differenceEntreDeuxNotesValide(jeu1[1], jeu2[1]) && differenceEntreDeuxNotesValide(jeu1[2], jeu2[2]);
 	}
 	
 	public boolean estAlto(int note){
@@ -191,28 +199,18 @@ public class Regle {
 		return true;
 	}
 	
+	private boolean noteChangePas(int n1, int n2, int accordN2){
+		return noteAppatientAccordSuivant(n1, accordN2) && (n1 == n2);
+	}
+	
 	public boolean regle6(Sommet s1, Sommet s2){
-		if(differenceEntreDeuxNotesValide(s1.getJeu()[0], s2.getJeu()[0]) 
-				&& differenceEntreDeuxNotesValide(s1.getJeu()[1], s2.getJeu()[1]) 
-				&& differenceEntreDeuxNotesValide(s1.getJeu()[2], s2.getJeu()[2])){
-			if((noteAppatientAccordSuivant(s1.getJeu()[0], s2.getAccord()) && (s1.getJeu()[0] == s2.getJeu()[0])) 
-					|| (!noteAppatientAccordSuivant(s1.getJeu()[0], s2.getAccord()))){
-				//si alto appartient a l'accord suivant elle ne change pas
-				if((noteAppatientAccordSuivant(s1.getJeu()[1], s2.getAccord()) && (s1.getJeu()[1] == s2.getJeu()[1])) 
-						|| (!noteAppatientAccordSuivant(s1.getJeu()[1], s2.getAccord()))){
-					//si tenor appartient a l'accord suivant elle ne change pas
-					if((noteAppatientAccordSuivant(s1.getJeu()[2], s2.getAccord()) && (s1.getJeu()[2] == s2.getJeu()[2])) 
-							|| (!noteAppatientAccordSuivant(s1.getJeu()[2], s2.getAccord()))){
-						//si basse appartient a l'accord suivant elle ne change pas
-						if((!differenceSuperieurA2(s1.getJeu()[0], s2.getJeu()[0]))
-								|| (differenceSuperieurA2(s1.getJeu()[0], s2.getJeu()[0]) && memeNature(s1.getJeu()[0], s2.getJeu()[0], s1.getAccord(), s2.getAccord()))){
-							//si la difference entre alto1 et alto2 est > 2 et qu'elles sont de même nature
-							if((!differenceSuperieurA2(s1.getJeu()[1], s2.getJeu()[1])) 
-									|| (differenceSuperieurA2(s1.getJeu()[1], s2.getJeu()[1]) && memeNature(s1.getJeu()[1], s2.getJeu()[1], s1.getAccord(), s2.getAccord()))){
-								//si la difference entre tenor1 et tenor2 est > 2 et qu'elles sont de même nature
-								if((!differenceSuperieurA2(s1.getJeu()[2], s2.getJeu()[2]))
-										|| (differenceSuperieurA2(s1.getJeu()[2], s2.getJeu()[2]) && memeNature(s1.getJeu()[2], s2.getJeu()[2], s1.getAccord(), s2.getAccord()))){
-									//si la difference entre basse1 et basse2 est > 2 et qu'elles sont de même nature
+		if(differenceEntreNotesJeuValide(s1.getJeu(), s2.getJeu())){
+			if(noteChangePas(s1.getJeu()[0], s2.getJeu()[0], s2.getAccord()) || (!noteAppatientAccordSuivant(s1.getJeu()[0], s2.getAccord()))){
+				if(noteChangePas(s1.getJeu()[1], s2.getJeu()[1], s2.getAccord()) || (!noteAppatientAccordSuivant(s1.getJeu()[1], s2.getAccord()))){
+					if(noteChangePas(s1.getJeu()[2], s2.getJeu()[2], s2.getAccord()) || (!noteAppatientAccordSuivant(s1.getJeu()[2], s2.getAccord()))){
+						if((!differenceSuperieurA2(s1.getJeu()[0], s2.getJeu()[0])) || (DiffSup2EtMemeNature(s1.getJeu()[0], s2.getJeu()[0], s1.getAccord(), s2.getAccord()))){
+							if((!differenceSuperieurA2(s1.getJeu()[1], s2.getJeu()[1])) || (DiffSup2EtMemeNature(s1.getJeu()[1], s2.getJeu()[1], s1.getAccord(), s2.getAccord()))){
+								if((!differenceSuperieurA2(s1.getJeu()[2], s2.getJeu()[2])) || (DiffSup2EtMemeNature(s1.getJeu()[2], s2.getJeu()[2], s1.getAccord(), s2.getAccord()))){
 									return true;
 								}
 							}
