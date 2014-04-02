@@ -70,7 +70,7 @@ public class HarmonisationMusical {
 	
 	public static LinkedList<Note> creerVoix(LinkedList<Integer> soprano, int numVoix) throws HarmonisationException{//numVoix = 0: alto, = 1: tenor, = 2: basse
 		Voix v = new Voix(soprano);
-		LinkedList<Integer> listeInt = v.unChemin(0, numVoix, soprano.size());
+		LinkedList<Integer> listeInt = v.unChemin(numVoix);
 		LinkedList<Note> ret = new LinkedList<Note>();
 		
 		for(Integer i : listeInt){

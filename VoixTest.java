@@ -12,18 +12,16 @@ public class VoixTest {
 		liste.add(14);
 		liste.add(15);
 		liste.add(16);
-		liste.add(15);
+		liste.add(16);
 		Voix v = new Voix(liste);
 		System.out.println(v.toString());
 	}
 	
-	@Test
+	//@Test
 	public void testUnCheminf(){//qui fonctionne
 		LinkedList<Integer> liste = new LinkedList<Integer>();
-		liste.add(14);
-		liste.add(15);
-		liste.add(16);
-		liste.add(15);
+		liste.add(21);
+		liste.add(23);
 		Voix v = new Voix(liste);
 		LinkedList<Integer> alto;
 		try {
@@ -37,7 +35,7 @@ public class VoixTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testUnChemin(){//qui sort une erreur
 		LinkedList<Integer> liste = new LinkedList<Integer>();
 		liste.add(14);

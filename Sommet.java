@@ -1,8 +1,11 @@
 package projet;
 
+import java.util.LinkedList;
+
 public class Sommet implements java.lang.Comparable{
 	private int positionNoteSoprano, accord;
 	private int[] jeu;
+	private LinkedList<Sommet> suivants = null;
 	private boolean visite = false;
 	
 	public Sommet(int pNS, int a, int[] j){
@@ -46,6 +49,14 @@ public class Sommet implements java.lang.Comparable{
 	public void setJeu(int[] jeu) {
 		this.jeu = jeu;
 	}
+	
+	public LinkedList<Sommet> getSuivants() {
+		return suivants;
+	}
+
+	public void setSuivants(LinkedList<Sommet> suivants) {
+		this.suivants = suivants;
+	}
 
 	public boolean isVisite() {
 		return visite;
@@ -56,7 +67,7 @@ public class Sommet implements java.lang.Comparable{
 	}
 
 	public boolean equals(Sommet s1){
-		return s1.getAccord() == accord && java.util.Arrays.equals(s1.getJeu(),jeu);
+		return s1.getAccord() == accord && java.util.Arrays.equals(s1.getJeu(),jeu) && s1.getPositionNoteSoprano() == positionNoteSoprano;
 	}
 	
 	public int compareTo(Object other) { 
