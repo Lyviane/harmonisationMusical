@@ -68,9 +68,9 @@ public class HarmonisationMusical {
 		return sop;
 	}
 	
-	public static LinkedList<Note> creerVoix(LinkedList<Integer> soprano, int numVoix){//numVoix = 0: alto, = 1: tenor, = 2: basse
+	public static LinkedList<Note> creerVoix(LinkedList<Integer> soprano, int numVoix, int critereBeaute){//numVoix = 0: alto, = 1: tenor, = 2: basse
 		Voix v = new Voix(soprano);
-		LinkedList<Integer> listeInt = v.unChemin(numVoix);
+		LinkedList<Integer> listeInt = v.unChemin(numVoix, critereBeaute);
 		LinkedList<Note> ret = new LinkedList<Note>();
 		
 		for(Integer i : listeInt){
@@ -80,12 +80,13 @@ public class HarmonisationMusical {
 	}
 
 	public static void main(String[] args) {
+		int critereBeaute = 1;
 		LinkedList<Note> l = chargerFichierChant("fichier.chant");
 		LinkedList<Integer> lInt = voixSoprano(l);
 		FichierLylipond ly = new FichierLylipond();
 		FichierMidi mi = new FichierMidi();
-		ly.sauvegarderEnLilypond(l, creerVoix(lInt, 0), creerVoix(lInt, 1), creerVoix(lInt, 2), titre, titre+".ly");
-		mi.sauvegarderEnMidi(l, creerVoix(lInt, 0), creerVoix(lInt, 1), creerVoix(lInt, 2), titre+".mid");
+		ly.sauvegarderEnLilypond(l, creerVoix(lInt, 0, critereBeaute), creerVoix(lInt, 1, critereBeaute), creerVoix(lInt, 2, critereBeaute), titre, titre+".ly");
+		mi.sauvegarderEnMidi(l, creerVoix(lInt, 0, critereBeaute), creerVoix(lInt, 1, critereBeaute), creerVoix(lInt, 2,critereBeaute), titre+".mid");
 		System.out.println("Il y a " + new Voix(lInt).nombreHarmonisationPossible() + " harmonisations possibles.");
 	}
 

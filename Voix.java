@@ -60,9 +60,18 @@ public class Voix {
 		}
 	}
 
-	public LinkedList<Integer> unChemin(int numVoix) {
+	public LinkedList<Integer> unChemin(int numVoix, int numCritereBeaute) {
 		RegleBelleHarmonie r = new RegleBelleHarmonie();
-		int numChemin = r.numPlusBeauChemin(chemins);
+		int numChemin = 0;
+		if(numCritereBeaute == 1)
+			numChemin = r.numPlusBeauCheminCritere1(chemins);
+		else if(numCritereBeaute == 2)
+			numChemin = r.numPlusBeauCheminCritere2(chemins);
+		else if(numCritereBeaute == 3)
+			numChemin = r.numPlusBeauCheminCritere3(chemins);
+		else if(numCritereBeaute == 4)
+			numChemin = r.numPlusBeauCheminCritere4(chemins);
+		
 		LinkedList<Integer> ret = new LinkedList<Integer>();
 		if(chemins.size() == 0){
 			System.err.println("Il n'y a pas d'harmonisation possible.");

@@ -42,10 +42,76 @@ public class RegleBelleHarmonie{
 		return pos;
 	}
 	
-	public int numPlusBeauChemin(LinkedList<LinkedList<Sommet>> chemins){//critère de beauté 2
-		LinkedList<LinkedList<Integer>> listeAlto = transformeChemin(chemins, 0);
-		LinkedList<LinkedList<Integer>> listeTenor = transformeChemin(chemins, 1);
+	private int posMaxTableau(int[] tab){
+		int max = tab[0], pos = 0;
+		for(int i = 1; i < tab.length; i++){
+			if(max < tab[i]){
+				max = tab[i];
+				pos = i;
+			}
+		}
+		return pos;
+	}
+	
+	private int posMinTableau(int[] tab){
+		int min = tab[0], pos = 0;
+		for(int i = 1; i < tab.length; i++){
+			if(min > tab[i]){
+				min = tab[i];
+				pos = i;
+			}
+		}
+		return pos;
+	}
+	
+	private int amplitude(LinkedList<Integer> voix){
+		int actuel;
+		int min = voix.get(0);
+		int max = voix.get(0);
+		
+		for(int i = 1; i < voix.size(); i++){
+			actuel = voix.get(i);
+			if(actuel < min)
+				min = actuel;
+			else if(actuel > max)
+				max = actuel;
+		}
+		return max - min;
+	}
+	
+	private int ecart(LinkedList<Integer> voix1, LinkedList<Integer> voix2){
+		int ecart = 0;
+		for(int i : voix1){
+			for(int j : voix2){
+				if(i > j)
+					ecart += i - j;
+				else
+					ecart += j - i;
+			}
+		}
+		return ecart;
+	}
+	
+	public int numPlusBeauCheminCritere1(LinkedList<LinkedList<Sommet>> chemins){//critère de beauté 1
 		if(chemins.size() != 0){
+			LinkedList<LinkedList<Integer>> listeAlto = transformeChemin(chemins, 0);
+			LinkedList<LinkedList<Integer>> listeTenor = transformeChemin(chemins, 1);
+		
+			int taille = listeAlto.size();
+			int tab[] = new int[taille];
+			for(int i = 0; i < taille; i++){
+				tab[i] = ecart(listeAlto.get(i), listeTenor.get(i));
+			}
+			return posMinTableau(tab);
+		}
+		return -1;
+	}
+	
+	public int numPlusBeauCheminCritere2(LinkedList<LinkedList<Sommet>> chemins){//critère de beauté 2
+		if(chemins.size() != 0){
+			LinkedList<LinkedList<Integer>> listeAlto = transformeChemin(chemins, 0);
+			LinkedList<LinkedList<Integer>> listeTenor = transformeChemin(chemins, 1);
+		
 			int taille = listeAlto.size();
 			int tabAlto[] = new int[taille];
 			int tabTenor[] = new int[taille];
@@ -56,5 +122,22 @@ public class RegleBelleHarmonie{
 			return (posMin2Tableau(tabAlto, tabTenor));
 		}
 		return -1;
+	}
+	
+	public int numPlusBeauCheminCritere3(LinkedList<LinkedList<Sommet>> chemins){//critère de beauté 3
+		if(chemins.size() != 0){
+			LinkedList<LinkedList<Integer>> listeBasse = transformeChemin(chemins, 2);
+			int taille = listeBasse.size();
+			int tab[] = new int[taille];
+			for(int i = 0; i < taille; i++){
+				tab[i] = amplitude(listeBasse.get(i));
+			}
+			return posMaxTableau(tab);
+		}
+		return -1;
+	}
+	
+	public int numPlusBeauCheminCritere4(LinkedList<LinkedList<Sommet>> chemins){//critère de beauté 4
+		
 	}
 }

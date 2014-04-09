@@ -28,7 +28,7 @@ public class VoixTest {
 		liste.add(23);
 		Voix v = new Voix(liste);
 		LinkedList<Integer> alto;
-		alto = v.unChemin(0);
+		alto = v.unChemin(0, 2);
 		for(int a : alto){
 			System.out.print(a+",");
 		}
@@ -42,7 +42,7 @@ public class VoixTest {
 		liste.add(15);
 		Voix v = new Voix(liste);
 		LinkedList<Integer> alto;
-		alto = v.unChemin(0);
+		alto = v.unChemin(0, 2);
 		for(int a : alto){
 			System.out.print(a+",");
 		}
@@ -65,7 +65,7 @@ public class VoixTest {
 		liste.add(22);
 		Voix v = new Voix(liste);
 		LinkedList<Integer> alto;
-		alto = v.unChemin(0);
+		alto = v.unChemin(0, 2);
 		for(int a : alto){
 			System.out.print(a+",");
 		}
