@@ -219,6 +219,7 @@ public class Accord {
 			liste.add(7);
 			break;
 		case 2:
+			liste.add(2);
 			liste.add(5);
 			liste.add(7);
 			break;
@@ -233,6 +234,7 @@ public class Accord {
 		case 5:
 			liste.add(1);
 			liste.add(3);
+			liste.add(5);
 			liste.add(4);
 			liste.add(6);
 			break;
@@ -241,10 +243,12 @@ public class Accord {
 			liste.add(3);
 			liste.add(4);
 			liste.add(5);
+			liste.add(6);
 			break;
 		case 7:
 			liste.add(1);
 			liste.add(3);
+			liste.add(7);
 			break;
 		}
 		return liste;

@@ -34,7 +34,7 @@ public class Voix {
 	}
 
 	private void remplirVoix(LinkedList<Integer> noteSoprano) {
-		Regle r = new Regle();
+		RegleHarmonisation r = new RegleHarmonisation();
 		int pos = 0;
 		int posSuiv = 0;
 		for (int i = 0; i < noteSoprano.size(); i++) {
@@ -50,7 +50,7 @@ public class Voix {
 					if (i != noteSoprano.size() - 1) {
 						for (Sommet som : listeAccordSuivantAAjouter(note,
 								numAcc, noteSoprano.get(i + 1), posSuiv)) {// j'ajoute le sommet si il appartient au suivant possible
-							if (r.regle6(sActuel, som)) {// TODO: des cas ne passent pas alors qu'ils devraient
+							if (r.regle6(sActuel, som)) {
 								listeArc.add(new Arc(sActuel, som));
 							}
 						}
@@ -61,13 +61,15 @@ public class Voix {
 	}
 
 	public LinkedList<Integer> unChemin(int numVoix) {
+		RegleBelleHarmonie r = new RegleBelleHarmonie();
+		int numChemin = r.numPlusBeauChemin(chemins);
 		LinkedList<Integer> ret = new LinkedList<Integer>();
 		if(chemins.size() == 0){
 			System.err.println("Il n'y a pas d'harmonisation possible.");
 			return ret;
 		}
-		LinkedList<Sommet> premierChemin = chemins.getFirst();
-		for (Sommet s : premierChemin) {
+		LinkedList<Sommet> CheminSelectionne = chemins.get(numChemin);
+		for (Sommet s : CheminSelectionne) {
 			ret.add(s.getJeu()[numVoix]);
 		}
 		return ret;
@@ -86,7 +88,7 @@ public class Voix {
 	private LinkedList<Sommet> listeAccordSuivantAAjouter(int n1, int numAcc1,
 			int n2, int pos2) {
 		LinkedList<Sommet> s = new LinkedList<Sommet>();
-		Regle r = new Regle();
+		RegleHarmonisation r = new RegleHarmonisation();
 		Accord acc2 = new Accord(n2);
 		for (int numAcc2 : acc2.getAccord()) {
 			if (r.estAccordSuivantValide(numAcc1, numAcc2)) {

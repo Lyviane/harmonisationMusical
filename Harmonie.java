@@ -13,7 +13,7 @@ public class Harmonie {
 	}
 
 	private LinkedList<int[]> remplir(int note, int[] tab){
-		Regle r = new Regle();
+		RegleHarmonisation r = new RegleHarmonisation();
 		LinkedList<int[]> ret = new LinkedList<int[]>();
 		for(int i = 0; i < tab.length; i++){
 			for(int j = 0; j < tab.length; j++){

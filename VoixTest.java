@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class VoixTest {
 
-	@Test
+	//@Test
 	public void test() {
 		LinkedList<Integer> liste = new LinkedList<Integer>();
 		liste.add(21);
@@ -21,10 +21,25 @@ public class VoixTest {
 	}
 	
 	@Test
-	public void testUnCheminf(){
+	public void testUnChemin1(){
 		LinkedList<Integer> liste = new LinkedList<Integer>();
-		liste.add(22);
-		liste.add(22);
+		liste.add(20);
+		liste.add(21);
+		liste.add(23);
+		Voix v = new Voix(liste);
+		LinkedList<Integer> alto;
+		alto = v.unChemin(0);
+		for(int a : alto){
+			System.out.print(a+",");
+		}
+		System.out.println("");
+	}
+	
+	//@Test
+	public void testUnChemin3(){
+		LinkedList<Integer> liste = new LinkedList<Integer>();
+		liste.add(15);
+		liste.add(15);
 		Voix v = new Voix(liste);
 		LinkedList<Integer> alto;
 		alto = v.unChemin(0);
@@ -35,12 +50,19 @@ public class VoixTest {
 	}
 	
 	@Test
-	public void testUnChemin(){
+	public void testUnChemin2(){
 		LinkedList<Integer> liste = new LinkedList<Integer>();
-		liste.add(14);
-		liste.add(15);
-		liste.add(16);
-		liste.add(17);
+		liste.add(22);
+		liste.add(22);
+		Voix v = new Voix(liste);
+		System.out.println("nombre d'harmonisation possible : "+v.nombreHarmonisationPossible());
+	}
+	
+	//@Test
+	public void testUnChemin10(){
+		LinkedList<Integer> liste = new LinkedList<Integer>();
+		liste.add(22);
+		liste.add(22);
 		Voix v = new Voix(liste);
 		LinkedList<Integer> alto;
 		alto = v.unChemin(0);

@@ -2,8 +2,7 @@ package projet;
 
 import java.util.LinkedList;
 
-public class Regle {
-
+public class RegleHarmonisation{
 	private String typeNote(int note, int numAccord){
 		switch(numAccord){
 		case 1:
@@ -120,7 +119,7 @@ public class Regle {
 		return (soprano > alto && alto > tenor && tenor > basse);
 	}
 	
-	public boolean differenceSuperieurA2(int n1, int n2){
+	private boolean differenceSuperieurA2(int n1, int n2){
 		if (n1 >= n2){
 			if(n1-n2 > 2)
 				return true;
@@ -207,19 +206,17 @@ public class Regle {
 		if(differenceEntreNotesJeuValide(s1.getJeu(), s2.getJeu())){
 			if(noteChangePas(s1.getJeu()[0], s2.getJeu()[0], s2.getAccord()) || (!noteAppatientAccordSuivant(s1.getJeu()[0], s2.getAccord()))){
 				if(noteChangePas(s1.getJeu()[1], s2.getJeu()[1], s2.getAccord()) || (!noteAppatientAccordSuivant(s1.getJeu()[1], s2.getAccord()))){
-					if(noteChangePas(s1.getJeu()[2], s2.getJeu()[2], s2.getAccord()) || (!noteAppatientAccordSuivant(s1.getJeu()[2], s2.getAccord()))){
-						if((!differenceSuperieurA2(s1.getJeu()[0], s2.getJeu()[0])) || (DiffSup2EtMemeNature(s1.getJeu()[0], s2.getJeu()[0], s1.getAccord(), s2.getAccord()))){
-							if((!differenceSuperieurA2(s1.getJeu()[1], s2.getJeu()[1])) || (DiffSup2EtMemeNature(s1.getJeu()[1], s2.getJeu()[1], s1.getAccord(), s2.getAccord()))){
-								if((!differenceSuperieurA2(s1.getJeu()[2], s2.getJeu()[2])) || (DiffSup2EtMemeNature(s1.getJeu()[2], s2.getJeu()[2], s1.getAccord(), s2.getAccord()))){
-									return true;
-								}
+					if((!differenceSuperieurA2(s1.getJeu()[0], s2.getJeu()[0])) || (DiffSup2EtMemeNature(s1.getJeu()[0], s2.getJeu()[0], s1.getAccord(), s2.getAccord()))){
+						if((!differenceSuperieurA2(s1.getJeu()[1], s2.getJeu()[1])) || (DiffSup2EtMemeNature(s1.getJeu()[1], s2.getJeu()[1], s1.getAccord(), s2.getAccord()))){
+							if((!differenceSuperieurA2(s1.getJeu()[2], s2.getJeu()[2])) || (DiffSup2EtMemeNature(s1.getJeu()[2], s2.getJeu()[2], s1.getAccord(), s2.getAccord()))){
+								return true;
 							}
 						}
 					}
+					
 				}
 			}
 		}
 		return false;
 	}
-	
 }
