@@ -4,18 +4,6 @@ import java.util.LinkedList;
 
 public class RegleBelleHarmonie{
 	
-	private int tenueNote(LinkedList<Integer> voix){
-		int ret = 0;
-		int prec = voix.getFirst();
-		for(int i = 1; i < voix.size(); i++){
-			if(prec != voix.get(i)){
-				ret++;
-			}
-			prec = voix.get(i);
-		}
-		return ret;
-	}
-	
 	private LinkedList<LinkedList<Integer>> transformeChemin(LinkedList<LinkedList<Sommet>> chemins, int numVoix){
 		LinkedList<LinkedList<Integer>> ret = new LinkedList<LinkedList<Integer>>();
 		for(int numChemin = 0; numChemin < chemins.size(); numChemin++){
@@ -64,6 +52,18 @@ public class RegleBelleHarmonie{
 		return pos;
 	}
 	
+	private int tenueNote(LinkedList<Integer> voix){
+		int ret = 0;
+		int prec = voix.getFirst();
+		for(int i = 1; i < voix.size(); i++){
+			if(prec != voix.get(i)){
+				ret++;
+			}
+			prec = voix.get(i);
+		}
+		return ret;
+	}
+	
 	private int amplitude(LinkedList<Integer> voix){
 		int actuel;
 		int min = voix.get(0);
@@ -90,6 +90,10 @@ public class RegleBelleHarmonie{
 			}
 		}
 		return ecart;
+	}
+	
+	private int ecartEtTenueNoteEtAmplitude(LinkedList<Integer> voix1, LinkedList<Integer> voix2, LinkedList<Integer> voix3){
+		return ecart(voix1, voix2) + tenueNote(voix1) + tenueNote(voix2) - amplitude(voix3);
 	}
 	
 	public int numPlusBeauCheminCritere1(LinkedList<LinkedList<Sommet>> chemins){//critère de beauté 1
@@ -138,6 +142,17 @@ public class RegleBelleHarmonie{
 	}
 	
 	public int numPlusBeauCheminCritere4(LinkedList<LinkedList<Sommet>> chemins){//critère de beauté 4
-		
+		if(chemins.size() != 0){
+			LinkedList<LinkedList<Integer>> listeAlto = transformeChemin(chemins, 0);
+			LinkedList<LinkedList<Integer>> listeTenor = transformeChemin(chemins, 1);
+			LinkedList<LinkedList<Integer>> listeBasse = transformeChemin(chemins, 2);
+			int taille = listeAlto.size();
+			int[] tab = new int[taille];
+			for(int i = 0; i < taille; i++){
+				tab[i] = ecartEtTenueNoteEtAmplitude(listeAlto.get(i), listeTenor.get(i), listeBasse.get(i));
+			}
+			return posMinTableau(tab);
+		}
+		return -1;
 	}
 }

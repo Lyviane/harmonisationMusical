@@ -80,7 +80,7 @@ public class HarmonisationMusical {
 	}
 
 	public static void main(String[] args) {
-		int critereBeaute = 1;
+		int critereBeaute = 4;
 		LinkedList<Note> l = chargerFichierChant("fichier.chant");
 		LinkedList<Integer> lInt = voixSoprano(l);
 		FichierLylipond ly = new FichierLylipond();
